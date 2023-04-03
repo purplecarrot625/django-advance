@@ -20,6 +20,9 @@ ARG DEV=false
 RUN python -m venv /py && \
 # upgrade the python manager in the virtual environment
     /py/bin/pip install --upgrade pip && \
+    apk add --update --no-cache postgresql-client && \
+    apk add --update --no-cache --virtual .tmp-build-deps \
+        build-base postgresql-dev musl-dev && \
     # install the requirements inside the docker image
     /py/bin/pip install -r /tmp/requirements.txt && \
     # remove the tmp files before the end of the docker file
@@ -27,6 +30,8 @@ RUN python -m venv /py && \
         then /py/bin/pip install -r /tmp/requirements.dev.txt; \
     fi && \
     rm -rf /tmp && \
+    # delete the build dependencies
+    apk del .tmp-build-deps && \
     # add new user inside the image, not use the root user
     adduser \
         --disabled-password \
