@@ -15,7 +15,7 @@ class UserManager(BaseUserManager):
     """
 
     def create_user(self, email, password=None, **extra_fields):
-        user = self.model(email=email, **extra_fields)  # extra_field is any other field, flexible!
+        user = self.model(email=self.normalize_email(email), **extra_fields)  # extra_field is any other field, flexible!
         user.set_password(password)  # encrypt password
         user.save(using=self._db)
 
