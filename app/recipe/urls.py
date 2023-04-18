@@ -8,6 +8,7 @@ from recipe import views
 
 router = DefaultRouter()
 router.register('recipes', views.RecipeViewSet)  # create an endpoint: api/recipes
+router.register('tags', views.TagViewSet)  # create an endpoint: api/tags
 
 app_name = 'recipe'  # namespace for the urls
 urlpatterns = [
