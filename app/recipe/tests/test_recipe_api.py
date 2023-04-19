@@ -204,7 +204,7 @@ class PrivateRecipeAPITests(TestCase):
                 user=self.user,
             ).exists()
 
-        self.assertTrue(exists)
+            self.assertTrue(exists)
 
     def test_create_recipe_with_existing_tags(self):
         """Test creating a recipe with existing tags"""
@@ -226,7 +226,7 @@ class PrivateRecipeAPITests(TestCase):
         self.assertIn(tag_Chinese, recipe.tags.all())  # make sure the specified tag is in the recipe
 
         for tag in payload['tags']:
-            exists = recipes.tags.filter(
+            exists = recipe.tags.filter(
                 name=tag['name'],
                 user=self.user,
             ).exists()
