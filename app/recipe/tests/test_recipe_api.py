@@ -188,6 +188,8 @@ class PrivateRecipeAPITests(TestCase):
             'title': 'Sample recipe',
             'time_minutes': 10,
             'price': 5.00,
+            'description': 'New description',
+            'link': 'http://www.example1.com',
             'tags':[{'name':'Vegan'}, {'name':'Dessert'}]
         }
 
@@ -213,6 +215,8 @@ class PrivateRecipeAPITests(TestCase):
             'title': 'Beijing Roast Duck',
             'time_minutes': 10,
             'price': 5.00,
+            'description': 'New description',
+            'link': 'http://www.example1.com',
             'tags':[{'name':'Chinese'}, {'name':'Beijing'}]
         }
 
