@@ -21,7 +21,7 @@ class RecipeSerializer(serializers.ModelSerializer):
         read_only_fields = ['id']
     def _get_or_create_tags(self, tags, recipe):
         """Handle getting or creating tag as needed"""
-        auth_user = self.context['request'].user
+        auth_user = self.context['request'].user  # HTTPrequest 对象中，可以得到当前请求用户
         for tag in tags:
             tag_obj, created = Tag.objects.get_or_create(
                 user=auth_user,

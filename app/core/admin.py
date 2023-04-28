@@ -30,3 +30,4 @@ class UserAdmin(BaseUserAdmin):
 admin.site.register(models.User, UserAdmin)  # user the customized admin page
 admin.site.register(models.Recipe)  # use the default admin page
 admin.site.register(models.Tag)
+admin.site.register(models.Ingredient)
