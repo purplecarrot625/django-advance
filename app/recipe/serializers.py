@@ -63,11 +63,17 @@ class RecipeSerializer(serializers.ModelSerializer):
     def update(self, instance, validated_data):
         """Update a recipe"""
         tags = validated_data.pop('tags', None)
+        ingredient = validated_data.pop('ingredients', None)
 
         # If tag is an empty list, clear all the tags
         if tags is not None:
             instance.tags.clear()
             self._get_or_create_tags(tags, instance)
+
+        # If ingredient is an empty list, clear all the ingredients
+        if ingredient is not None:
+            instance.ingredients.clear()
+            self._get_or_create_ingredients(ingredient, instance)
 
         # Rest of the data (except tags), reassign to the instance
         for attr, value in validated_data.items():

@@ -334,3 +334,30 @@ class PrivateRecipeAPITests(TestCase):
             ).exists()
 
             self.assertTrue(exists)
+
+    def test_create_ingredient_on_update(self):
+        """ Test creating an ingredient when updating a recipe. """
+
+        recipe = create_recipe(user=self.user)
+        payload = {
+            'ingredients': [{'name':'Lemon'}]
+        }
+        url = detail_url(recipe.id)
+        res = self.client.patch(url, payload, format='json')
+
+        self.assertEqual(res.status_code, status.HTTP_200_OK)
+        new_ingredient = Ingredient.objects.get(user=self.user, name='Lemon')
+        self.assertIn(new_ingredient, recipe.ingredients.all())
+
+    def test_clear_recipe_ingredients(self):
+        """ Test clearing a recipe's ingredients. """
+        ingredient = Ingredient.objects.create(user=self.user, name='Lemon')
+        recipe = create_recipe(user=self.user)
+        recipe.ingredients.add(ingredient)
+
+        payload = {'ingredients': []}
+        url = detail_url(recipe.id)
+        res = self.client.patch(url, payload, format='json')
+
+        self.assertEqual(res.status_code, status.HTTP_200_OK)
+        self.assertEqual(recipe.ingredients.count(), 0)
