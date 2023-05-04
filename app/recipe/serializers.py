@@ -89,3 +89,12 @@ class RecipeDetailSerializer(RecipeSerializer):
 
     class Meta(RecipeSerializer.Meta):
         fields = RecipeSerializer.Meta.fields + ['description']
+
+class RecipeImageSerializer(serializers.ModelSerializer):
+    """ Serializer for uploading images to recipes"""
+
+    class Meta:
+        model = Recipe # Link to the recipe model
+        fields = ['id', 'image']
+        read_only_fields = ['id']
+        extra_kwargs = {'image': {'required': True}}  #  extra_kwargs: 用于指定特定字段的额外参数，这里指定了image字段是必须的

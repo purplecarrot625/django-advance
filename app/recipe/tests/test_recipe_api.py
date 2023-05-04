@@ -23,7 +23,7 @@ def detail_url(recipe_id):
 
 def image_upload_url(recipe_id):
     """ Create and return an image upload url """
-    return reverse('recipe:recipe-upload-image, args=[recipe_id]')
+    return reverse('recipe:recipe-upload-image', args=[recipe_id])
 """
 在这个函数中，reverse函数被传入了一个名称为'recipe:recipe-upload-image'的URL模式，以及一个参数[recipe_id]。
 这个URL模式的含义是：它匹配到一个以/recipe/{recipe_id}/image/upload/形式的URL，其中{recipe_id}部分是一个动态参数，
