@@ -44,6 +44,7 @@ class RecipeViewSet(viewsets.ModelViewSet):
         """ Convert a list of strings to integers"""
         return [int(str_id) for str_id in qs.split(',')]
 
+    # 自定义获取查询集
     def get_queryset(self):
         """Retrieve the recipes for the authenticated user."""
         #return self.queryset.filter(user=self.request.user).order_by('-id')
