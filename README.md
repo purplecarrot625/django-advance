@@ -1,4 +1,4 @@
-# django-advance
+# Food recipe API
 This is an API for food recipe! 🍻
 
 ![image](https://github.com/purplecarrot625/django-advance/assets/97133994/0546877f-064f-4317-bf02-50ac8acb4dff)
